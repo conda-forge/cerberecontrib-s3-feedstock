@@ -10,22 +10,24 @@ source:
   sha256: d6001d8c27f1833665bd8d4ca13f0d45a6ffa61a306f49a650da8cb38993f165
   
 build:
-  number: 0
+  number: 1
   noarch: python
   script: 
   - {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
-    - python >=3.8
+    - python {{ python_min }}
     - pip
   run:
-    - python >=3.8
+    - python >={{ python_min }}
     - cerbere >=2.1.1
     - gdal
     - lxml 
  
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - cerberecontrib_s3
     
